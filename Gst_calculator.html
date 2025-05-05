@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GST Calculator</title>
+</head>
+<body>
+    <form id="myfrm">
+        <div style="text-align: center; margin-top: 50px;">
+            <h2>GST Calculator</h2>
+            <label>Enter Amount (in INR):</label>
+            <input type="text" id="t1"><br><br>
+
+            <label>Select GST Rate:</label>
+            <select id="sel">
+                <option value="">--Select--</option>
+                <option value="18">18%</option>
+                <option value="28">28%</option>
+            </select><br><br>
+
+            <input type="button" id="b1" value="Calculate GST"><br><br>
+
+            <div style="font-weight: bold;">
+                <p id="p1"></p>
+                <p id="p2"></p>
+                <p id="p3"></p>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById("b1").onclick = function() {
+            var amount = parseFloat(document.getElementById("t1").value);
+            var gstRate = parseFloat(document.getElementById("sel").value);
+
+            if (isNaN(amount) || isNaN(gstRate)) {
+                alert("Please enter a valid amount and select GST rate.");
+                return;
+            }
+
+            var gst = (amount * gstRate) / 100;
+            var total = amount + gst;
+
+            document.getElementById("p1").innerText = `Amount: ₹ ${amount.toFixed(2)}`;
+            document.getElementById("p2").innerText = `GST (${gstRate}%): ₹ ${gst.toFixed(2)}`;
+            document.getElementById("p3").innerText = `Total: ₹ ${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
